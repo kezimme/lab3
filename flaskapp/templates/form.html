@@ -1,0 +1,50 @@
+<!doctype html>
+<head>
+  <title>Resize</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/form.css') }}">
+</head>
+<body>
+  <h1>Изменение размера</h1>
+  <div class="form">
+    <p class="upload_title">Форма загрузки</p>
+    <form action="" method=post enctype=multipart/form-data>
+      {{ form.csrf_token }}
+      <div class="form-flex">
+        <div class="fields-form">
+          <div class="upload-file">
+            {{ form.upload_file.label }}
+            {{ form.upload_file }}
+          </div>
+          <br>
+          <div class="fields">
+            <div class="height">
+              {{ form.height.label }}
+              {{ form.height }}
+            </div>
+            <br>
+            <div class="width">
+              {{ form.width.label }}
+              {{ form.width }}
+            </div>
+          </div>
+        </div>
+        <div class="upload">
+          <input type=submit value="Изменить размер!" class="upload-input">
+        </div>
+      </div>
+    </form>
+    {% if image_to_resize %}
+    <div class="resize-flex">
+      <div class="image-to-resize">
+        <img src="{{ image_to_resize }}" alt="">
+      </div>
+      <div class="image-resized">
+        <img src="{{ image_resized }}" alt="" height="{{ height }}" width="{{ width }}">
+      </div>
+    </div>
+    <div class="graph-url">
+      <a href="graphs">Посмотреть графики</a>
+    </div>
+    {% endif %}
+  </div>
+</body>
